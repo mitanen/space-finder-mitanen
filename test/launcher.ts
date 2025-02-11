@@ -1,20 +1,14 @@
 //import { handler } from "../src/services/hello";
-import { postSpaces } from "../src/services/spaces/PostSpaces"; 
-import { APIGatewayProxyEvent } from "aws-lambda";
+import { postSpaces } from "../src/services/spaces/PostSpaces";
+import { handler } from "../src/services/spaces/handler";
 
 
+process.env.AWS_REGION = "eu-west-1";
+process.env.TABLE_NAME = 'SpaceTable-068e7469d831'
 
-
-// Mock API Gateway event
-const event: APIGatewayProxyEvent = {
-    httpMethod: "POST",
-    body: JSON.stringify({
-        location: "Dublin"
-    }),
-} as any; // Type assertion to bypass missing fields
-
-// Call Lambda function
-(async () => {
-    const response = await postSpaces(event, {} as any);
-    console.log("Lambda Response:", response);
-})();
+handler({
+    httpMethod: 'GET',
+    // body: JSON.stringify({
+    //     location: 'Dublin'
+    // })
+} as any, {} as any);
