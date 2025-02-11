@@ -11,4 +11,7 @@ handler({
     // body: JSON.stringify({
     //     location: 'Dublin'
     // })
+    queryStringParameters: {
+        id: '3bb0e645-b435-4217-9d93-ba525185c775'
+    }    
 } as any, {} as any);
