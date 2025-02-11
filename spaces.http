@@ -1,7 +1,9 @@
 @url = https://mj24916zla.execute-api.eu-central-1.amazonaws.com/prod/
 
-GET {{url}}/spaces
-###
 
-POST {{url}}/spaces
-###
+POST https://fbzsa4h8i6.execute-api.eu-west-1.amazonaws.com/prod/spaces
+content-type: application/json
+
+{
+  "location": "Paris"
+}
