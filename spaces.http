@@ -9,5 +9,9 @@ content-type: application/json
 }
 ###
 
-GET  https://fbzsa4h8i6.execute-api.eu-west-1.amazonaws.com/prod/spaces
+PUT  https://fbzsa4h8i6.execute-api.eu-west-1.amazonaws.com/prod/spaces
+content-type: application/json
+ {
+    "location": "Paris2"
+ }
 ###
