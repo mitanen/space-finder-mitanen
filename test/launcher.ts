@@ -7,9 +7,9 @@ process.env.AWS_REGION = "eu-west-1";
 process.env.TABLE_NAME = 'SpaceTable-068e7469d831'
 
 handler({
-    httpMethod: 'POST',
+    httpMethod: 'PUT',
     body: JSON.stringify({
-        location: 'Dublin updated'
+        location: 'Best location2'
     })
 } as any, {} as any).then(result =>{
     console.log(result)
