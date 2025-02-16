@@ -21,6 +21,6 @@ PUT https://fbzsa4h8i6.execute-api.eu-west-1.amazonaws.com/prod/spaces?id=ba87b7
 Content-Type: application/json
 
 {
-    "name": "Best location PUT test"
+    "name": "Best location PUT test2"
 }
 ###
