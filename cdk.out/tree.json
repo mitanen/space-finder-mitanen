@@ -308,7 +308,7 @@
                       "s3Bucket": {
                         "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
                       },
-                      "s3Key": "3d5bf4fcbcb86fcdc85d0d1386f9b5f4432972808c869cdf18feb206779178e0.zip"
+                      "s3Key": "84e38c9b3dff434a1f06b7a150d2fdd6ba153b5348841a77e6b2c5fb0f248cb4.zip"
                     },
                     "environment": {
                       "variables": {
@@ -525,6 +525,23 @@
             "path": "AuthStack/SpaceUserPoolClientId",
             "constructInfo": {
               "fqn": "aws-cdk-lib.CfnOutput",
+              "version": "2.177.0"
+            }
+          },
+          "SpaceAdmins": {
+            "id": "SpaceAdmins",
+            "path": "AuthStack/SpaceAdmins",
+            "attributes": {
+              "aws:cdk:cloudformation:type": "AWS::Cognito::UserPoolGroup",
+              "aws:cdk:cloudformation:props": {
+                "groupName": "admins",
+                "userPoolId": {
+                  "Ref": "SpaceUserPool6AB542DC"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_cognito.CfnUserPoolGroup",
               "version": "2.177.0"
             }
           },
