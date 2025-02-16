@@ -189,7 +189,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/34f244962a279d4cc26a23c2b2e3c367dcf4d3f717b3694dccc6a650da7e6f77.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/8fb38c90f4c3ad5bb83b222a7b2dd56b34c2d0f8c90812eae0233792f4fe7626.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -241,6 +241,12 @@
             "data": "CDKMetadataAvailable"
           }
         ],
+        "/AuthStack/Exports/Output{\"Fn::GetAtt\":[\"SpaceUserPool6AB542DC\",\"Arn\"]}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputFnGetAttSpaceUserPool6AB542DCArnC2E21F85"
+          }
+        ],
         "/AuthStack/BootstrapVersion": [
           {
             "type": "aws:cdk:logicalId",
@@ -273,7 +279,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/04a32b7593a4521ed1ec112ed343ed455b920d9b46086ecedb7ac5d6d7e12c04.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/634e711051220eb2b822e8d94c2cb398b76b033fa45832a1425015267721bcf8.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -287,6 +293,7 @@
       },
       "dependencies": [
         "LambdaStack",
+        "AuthStack",
         "ApiStack.assets"
       ],
       "metadata": {
@@ -311,7 +318,7 @@
         "/ApiStack/SpacesApi/Deployment/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "SpacesApiDeploymentE5EF4C156cee21f0ce5b4f7e8a5a1ceccb83d720"
+            "data": "SpacesApiDeploymentE5EF4C157cfc65d59145d6aabd8bbca9083cdd71"
           }
         ],
         "/ApiStack/SpacesApi/DeploymentStage.prod/Resource": [
@@ -402,6 +409,12 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "SpacesApispacesDELETEE9D6E062"
+          }
+        ],
+        "/ApiStack/SpacesApiAuthorizer/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SpacesApiAuthorizerF332D238"
           }
         ],
         "/ApiStack/CDKMetadata/Default": [

@@ -554,6 +554,24 @@
               "version": "10.4.2"
             }
           },
+          "Exports": {
+            "id": "Exports",
+            "path": "AuthStack/Exports",
+            "children": {
+              "Output{\"Fn::GetAtt\":[\"SpaceUserPool6AB542DC\",\"Arn\"]}": {
+                "id": "Output{\"Fn::GetAtt\":[\"SpaceUserPool6AB542DC\",\"Arn\"]}",
+                "path": "AuthStack/Exports/Output{\"Fn::GetAtt\":[\"SpaceUserPool6AB542DC\",\"Arn\"]}",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.177.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.4.2"
+            }
+          },
           "BootstrapVersion": {
             "id": "BootstrapVersion",
             "path": "AuthStack/BootstrapVersion",
@@ -712,7 +730,7 @@
                       "aws:cdk:cloudformation:type": "AWS::ApiGateway::Stage",
                       "aws:cdk:cloudformation:props": {
                         "deploymentId": {
-                          "Ref": "SpacesApiDeploymentE5EF4C156cee21f0ce5b4f7e8a5a1ceccb83d720"
+                          "Ref": "SpacesApiDeploymentE5EF4C157cfc65d59145d6aabd8bbca9083cdd71"
                         },
                         "restApiId": {
                           "Ref": "SpacesApiECBF71CD"
@@ -868,7 +886,10 @@
                             "attributes": {
                               "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
                               "aws:cdk:cloudformation:props": {
-                                "authorizationType": "NONE",
+                                "authorizationType": "COGNITO_USER_POOLS",
+                                "authorizerId": {
+                                  "Ref": "SpacesApiAuthorizerF332D238"
+                                },
                                 "httpMethod": "GET",
                                 "integration": {
                                   "type": "AWS_PROXY",
@@ -1011,7 +1032,10 @@
                             "attributes": {
                               "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
                               "aws:cdk:cloudformation:props": {
-                                "authorizationType": "NONE",
+                                "authorizationType": "COGNITO_USER_POOLS",
+                                "authorizerId": {
+                                  "Ref": "SpacesApiAuthorizerF332D238"
+                                },
                                 "httpMethod": "POST",
                                 "integration": {
                                   "type": "AWS_PROXY",
@@ -1154,7 +1178,10 @@
                             "attributes": {
                               "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
                               "aws:cdk:cloudformation:props": {
-                                "authorizationType": "NONE",
+                                "authorizationType": "COGNITO_USER_POOLS",
+                                "authorizerId": {
+                                  "Ref": "SpacesApiAuthorizerF332D238"
+                                },
                                 "httpMethod": "PUT",
                                 "integration": {
                                   "type": "AWS_PROXY",
@@ -1297,7 +1324,10 @@
                             "attributes": {
                               "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
                               "aws:cdk:cloudformation:props": {
-                                "authorizationType": "NONE",
+                                "authorizationType": "COGNITO_USER_POOLS",
+                                "authorizerId": {
+                                  "Ref": "SpacesApiAuthorizerF332D238"
+                                },
                                 "httpMethod": "DELETE",
                                 "integration": {
                                   "type": "AWS_PROXY",
@@ -1357,6 +1387,40 @@
             },
             "constructInfo": {
               "fqn": "aws-cdk-lib.aws_apigateway.RestApi",
+              "version": "2.177.0"
+            }
+          },
+          "SpacesApiAuthorizer": {
+            "id": "SpacesApiAuthorizer",
+            "path": "ApiStack/SpacesApiAuthorizer",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "ApiStack/SpacesApiAuthorizer/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ApiGateway::Authorizer",
+                  "aws:cdk:cloudformation:props": {
+                    "identitySource": "method.request.header.Authorization",
+                    "name": "ApiStackSpacesApiAuthorizer356FFD36",
+                    "providerArns": [
+                      {
+                        "Fn::ImportValue": "AuthStack:ExportsOutputFnGetAttSpaceUserPool6AB542DCArnC2E21F85"
+                      }
+                    ],
+                    "restApiId": {
+                      "Ref": "SpacesApiECBF71CD"
+                    },
+                    "type": "COGNITO_USER_POOLS"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_apigateway.CfnAuthorizer",
+                  "version": "2.177.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_apigateway.CognitoUserPoolsAuthorizer",
               "version": "2.177.0"
             }
           },
