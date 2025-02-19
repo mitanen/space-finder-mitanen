@@ -189,7 +189,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/0885a09ee3043893595335c2ce13006bcca35a990380144beb0ca9bee9509062.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/7b2e9f86645ce5051dccb52c6976e31aab284eaaf697b75090a1c0e247120eec.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -233,6 +233,18 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "SpaceAdmins"
+          }
+        ],
+        "/AuthStack/SpaceIdentityPool": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SpaceIdentityPool"
+          }
+        ],
+        "/AuthStack/SpaceIdentityPoolId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SpaceIdentityPoolId"
           }
         ],
         "/AuthStack/CDKMetadata/Default": [

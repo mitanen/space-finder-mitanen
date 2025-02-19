@@ -545,6 +545,41 @@
               "version": "2.177.0"
             }
           },
+          "SpaceIdentityPool": {
+            "id": "SpaceIdentityPool",
+            "path": "AuthStack/SpaceIdentityPool",
+            "attributes": {
+              "aws:cdk:cloudformation:type": "AWS::Cognito::IdentityPool",
+              "aws:cdk:cloudformation:props": {
+                "allowUnauthenticatedIdentities": true,
+                "cognitoIdentityProviders": [
+                  {
+                    "clientId": {
+                      "Ref": "SpaceUserPoolSpaceUserPoolClient91C675C0"
+                    },
+                    "providerName": {
+                      "Fn::GetAtt": [
+                        "SpaceUserPool6AB542DC",
+                        "ProviderName"
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_cognito.CfnIdentityPool",
+              "version": "2.177.0"
+            }
+          },
+          "SpaceIdentityPoolId": {
+            "id": "SpaceIdentityPoolId",
+            "path": "AuthStack/SpaceIdentityPoolId",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnOutput",
+              "version": "2.177.0"
+            }
+          },
           "CDKMetadata": {
             "id": "CDKMetadata",
             "path": "AuthStack/CDKMetadata",
