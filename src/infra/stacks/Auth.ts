@@ -1,8 +1,9 @@
 import { CfnOutput, Stack, StackProps } from 'aws-cdk-lib'
 import { CfnIdentityPool, CfnIdentityPoolRoleAttachment, CfnUserPoolGroup, UserPool, UserPoolClient } from 'aws-cdk-lib/aws-cognito';
 import { CfnUserGroup } from 'aws-cdk-lib/aws-elasticache';
-import { FederatedPrincipal, Role } from 'aws-cdk-lib/aws-iam';
+//import { FederatedPrincipal, Role } from 'aws-cdk-lib/aws-iam';
 import { Construct } from 'constructs';
+import { Effect, FederatedPrincipal, PolicyStatement, Role } from 'aws-cdk-lib/aws-iam';
 
 //MyUserPoolPass01$
 export class AuthStack extends Stack {
@@ -12,16 +13,17 @@ export class AuthStack extends Stack {
     private identityPool: CfnIdentityPool;
     private authenticatedRole: Role;
     private unAuthenticatedRole: Role;
-    private adminRole: Role;    
+    private adminRole: Role;        
 
     constructor(scope: Construct, id: string, props?: StackProps) {
         super(scope, id, props);
         this.createUserPool();
         this.createUserPoolClient();
-        this.createAdminsGroup();
+        //this.createAdminsGroup();
         this.createIdentityPool();
         this.createRoles();
-        this.attachRoles();        
+        this.attachRoles();       
+        this.createAdminsGroup(); 
     }
     private createUserPool(){
         this.userPool = new UserPool(this, 'SpaceUserPool', {
@@ -52,7 +54,8 @@ export class AuthStack extends Stack {
     private createAdminsGroup(){
         new CfnUserPoolGroup(this, 'SpaceAdmins', {
             userPoolId: this.userPool.userPoolId,
-            groupName: 'admins'
+            groupName: 'admins',
+            roleArn: this.adminRole.roleArn
         })
     } 
     
@@ -106,6 +109,13 @@ export class AuthStack extends Stack {
                 'sts:AssumeRoleWithWebIdentity'
             )
         });
+        this.adminRole.addToPolicy(new PolicyStatement({
+            effect: Effect.ALLOW,
+            actions: [
+                's3:ListAllMyBuckets'
+            ],
+            resources: ['*']
+        }))        
     }
     private attachRoles(){
         new CfnIdentityPoolRoleAttachment(this, 'RolesAttachment', {

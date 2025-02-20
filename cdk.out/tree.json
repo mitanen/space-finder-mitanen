@@ -528,23 +528,6 @@
               "version": "2.177.0"
             }
           },
-          "SpaceAdmins": {
-            "id": "SpaceAdmins",
-            "path": "AuthStack/SpaceAdmins",
-            "attributes": {
-              "aws:cdk:cloudformation:type": "AWS::Cognito::UserPoolGroup",
-              "aws:cdk:cloudformation:props": {
-                "groupName": "admins",
-                "userPoolId": {
-                  "Ref": "SpaceUserPool6AB542DC"
-                }
-              }
-            },
-            "constructInfo": {
-              "fqn": "aws-cdk-lib.aws_cognito.CfnUserPoolGroup",
-              "version": "2.177.0"
-            }
-          },
           "SpaceIdentityPool": {
             "id": "SpaceIdentityPool",
             "path": "AuthStack/SpaceIdentityPool",
@@ -732,6 +715,45 @@
                   "fqn": "aws-cdk-lib.aws_iam.CfnRole",
                   "version": "2.177.0"
                 }
+              },
+              "DefaultPolicy": {
+                "id": "DefaultPolicy",
+                "path": "AuthStack/CognitoAdminRole/DefaultPolicy",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "AuthStack/CognitoAdminRole/DefaultPolicy/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                      "aws:cdk:cloudformation:props": {
+                        "policyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "s3:ListAllMyBuckets",
+                              "Effect": "Allow",
+                              "Resource": "*"
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "policyName": "CognitoAdminRoleDefaultPolicyBC6192E4",
+                        "roles": [
+                          {
+                            "Ref": "CognitoAdminRole4C10FBA4"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                      "version": "2.177.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Policy",
+                  "version": "2.177.0"
+                }
               }
             },
             "constructInfo": {
@@ -789,6 +811,29 @@
             },
             "constructInfo": {
               "fqn": "aws-cdk-lib.aws_cognito.CfnIdentityPoolRoleAttachment",
+              "version": "2.177.0"
+            }
+          },
+          "SpaceAdmins": {
+            "id": "SpaceAdmins",
+            "path": "AuthStack/SpaceAdmins",
+            "attributes": {
+              "aws:cdk:cloudformation:type": "AWS::Cognito::UserPoolGroup",
+              "aws:cdk:cloudformation:props": {
+                "groupName": "admins",
+                "roleArn": {
+                  "Fn::GetAtt": [
+                    "CognitoAdminRole4C10FBA4",
+                    "Arn"
+                  ]
+                },
+                "userPoolId": {
+                  "Ref": "SpaceUserPool6AB542DC"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_cognito.CfnUserPoolGroup",
               "version": "2.177.0"
             }
           },

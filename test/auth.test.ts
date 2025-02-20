@@ -1,5 +1,6 @@
 import { AuthService } from "./AuthService";
 import { fetchAuthSession } from 'aws-amplify/auth';  // Import the function
+import { ListBucketsCommand, S3Client } from "@aws-sdk/client-s3";
 
 async function testAuth() {
     const service = new AuthService();
@@ -14,7 +15,19 @@ async function testAuth() {
 
     // console.log(idToken);
     const credentials = await service.generateTemporaryCredentials();
-    const a = 5;    
+    
+    //console.log(credentials);
+    const buckets = await listBuckets(credentials);
+    console.log(buckets);    
 
+}
+
+async function listBuckets(credentials: any){
+    const client = new S3Client({
+        credentials: credentials
+    });
+    const command = new ListBucketsCommand({});
+    const result = await client.send(command);
+    return result;
 }
 testAuth();

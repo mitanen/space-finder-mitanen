@@ -189,7 +189,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/16c58e744487cbc29545b6f773ee8829f7c9e3e8ec6b24926739c5fbcefb370d.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/30943c6cbeed4a03319d3b2a14970fe85dfdd481659d641e1e1270da6b9cd08f.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -229,12 +229,6 @@
             "data": "SpaceUserPoolClientId"
           }
         ],
-        "/AuthStack/SpaceAdmins": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "SpaceAdmins"
-          }
-        ],
         "/AuthStack/SpaceIdentityPool": [
           {
             "type": "aws:cdk:logicalId",
@@ -265,10 +259,22 @@
             "data": "CognitoAdminRole4C10FBA4"
           }
         ],
+        "/AuthStack/CognitoAdminRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CognitoAdminRoleDefaultPolicyBC6192E4"
+          }
+        ],
         "/AuthStack/RolesAttachment": [
           {
             "type": "aws:cdk:logicalId",
             "data": "RolesAttachment"
+          }
+        ],
+        "/AuthStack/SpaceAdmins": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SpaceAdmins"
           }
         ],
         "/AuthStack/CDKMetadata/Default": [
