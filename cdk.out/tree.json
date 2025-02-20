@@ -580,6 +580,218 @@
               "version": "2.177.0"
             }
           },
+          "CognitoDefaultAuthenticatedRole": {
+            "id": "CognitoDefaultAuthenticatedRole",
+            "path": "AuthStack/CognitoDefaultAuthenticatedRole",
+            "children": {
+              "ImportCognitoDefaultAuthenticatedRole": {
+                "id": "ImportCognitoDefaultAuthenticatedRole",
+                "path": "AuthStack/CognitoDefaultAuthenticatedRole/ImportCognitoDefaultAuthenticatedRole",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.Resource",
+                  "version": "2.177.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "AuthStack/CognitoDefaultAuthenticatedRole/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                  "aws:cdk:cloudformation:props": {
+                    "assumeRolePolicyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "sts:AssumeRoleWithWebIdentity",
+                          "Condition": {
+                            "StringEquals": {
+                              "cognito-identity.amazonaws.com:aud": {
+                                "Ref": "SpaceIdentityPool"
+                              }
+                            },
+                            "ForAnyValue:StringLike": {
+                              "cognito-identity.amazonaws.com:amr": "authenticated"
+                            }
+                          },
+                          "Effect": "Allow",
+                          "Principal": {
+                            "Federated": "cognito-identity.amazonaws.com"
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                  "version": "2.177.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_iam.Role",
+              "version": "2.177.0"
+            }
+          },
+          "CognitoDefaultUnauthenticatedRole": {
+            "id": "CognitoDefaultUnauthenticatedRole",
+            "path": "AuthStack/CognitoDefaultUnauthenticatedRole",
+            "children": {
+              "ImportCognitoDefaultUnauthenticatedRole": {
+                "id": "ImportCognitoDefaultUnauthenticatedRole",
+                "path": "AuthStack/CognitoDefaultUnauthenticatedRole/ImportCognitoDefaultUnauthenticatedRole",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.Resource",
+                  "version": "2.177.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "AuthStack/CognitoDefaultUnauthenticatedRole/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                  "aws:cdk:cloudformation:props": {
+                    "assumeRolePolicyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "sts:AssumeRoleWithWebIdentity",
+                          "Condition": {
+                            "StringEquals": {
+                              "cognito-identity.amazonaws.com:aud": {
+                                "Ref": "SpaceIdentityPool"
+                              }
+                            },
+                            "ForAnyValue:StringLike": {
+                              "cognito-identity.amazonaws.com:amr": "unauthenticated"
+                            }
+                          },
+                          "Effect": "Allow",
+                          "Principal": {
+                            "Federated": "cognito-identity.amazonaws.com"
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                  "version": "2.177.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_iam.Role",
+              "version": "2.177.0"
+            }
+          },
+          "CognitoAdminRole": {
+            "id": "CognitoAdminRole",
+            "path": "AuthStack/CognitoAdminRole",
+            "children": {
+              "ImportCognitoAdminRole": {
+                "id": "ImportCognitoAdminRole",
+                "path": "AuthStack/CognitoAdminRole/ImportCognitoAdminRole",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.Resource",
+                  "version": "2.177.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "AuthStack/CognitoAdminRole/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                  "aws:cdk:cloudformation:props": {
+                    "assumeRolePolicyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "sts:AssumeRoleWithWebIdentity",
+                          "Condition": {
+                            "StringEquals": {
+                              "cognito-identity.amazonaws.com:aud": {
+                                "Ref": "SpaceIdentityPool"
+                              }
+                            },
+                            "ForAnyValue:StringLike": {
+                              "cognito-identity.amazonaws.com:amr": "authenticated"
+                            }
+                          },
+                          "Effect": "Allow",
+                          "Principal": {
+                            "Federated": "cognito-identity.amazonaws.com"
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                  "version": "2.177.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_iam.Role",
+              "version": "2.177.0"
+            }
+          },
+          "RolesAttachment": {
+            "id": "RolesAttachment",
+            "path": "AuthStack/RolesAttachment",
+            "attributes": {
+              "aws:cdk:cloudformation:type": "AWS::Cognito::IdentityPoolRoleAttachment",
+              "aws:cdk:cloudformation:props": {
+                "identityPoolId": {
+                  "Ref": "SpaceIdentityPool"
+                },
+                "roleMappings": {
+                  "adminsMapping": {
+                    "type": "Token",
+                    "ambiguousRoleResolution": "AuthenticatedRole",
+                    "identityProvider": {
+                      "Fn::Join": [
+                        "",
+                        [
+                          {
+                            "Fn::GetAtt": [
+                              "SpaceUserPool6AB542DC",
+                              "ProviderName"
+                            ]
+                          },
+                          ":",
+                          {
+                            "Ref": "SpaceUserPoolSpaceUserPoolClient91C675C0"
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                },
+                "roles": {
+                  "authenticated": {
+                    "Fn::GetAtt": [
+                      "CognitoDefaultAuthenticatedRoleC5D5C31E",
+                      "Arn"
+                    ]
+                  },
+                  "unauthenticated": {
+                    "Fn::GetAtt": [
+                      "CognitoDefaultUnauthenticatedRoleABBF7267",
+                      "Arn"
+                    ]
+                  }
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_cognito.CfnIdentityPoolRoleAttachment",
+              "version": "2.177.0"
+            }
+          },
           "CDKMetadata": {
             "id": "CDKMetadata",
             "path": "AuthStack/CDKMetadata",
